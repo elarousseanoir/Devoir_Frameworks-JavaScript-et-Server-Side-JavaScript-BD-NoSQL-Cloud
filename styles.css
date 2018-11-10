@@ -1,0 +1,43 @@
+h2 {
+    color:red;
+}
+#barre1 {
+    padding: 10px;
+    float: left;
+    min-width:125px;
+    padding-left: 18%;
+    position: fixed;
+    }
+     
+    #barre2 {
+    padding: 12px;
+    float: left;
+    padding-left: 46%;
+    min-width:125px;
+   
+    }
+    #barre3 {
+        padding: 20px;
+        float: left;
+        padding-left: 10%;
+        min-width:125px;
+        position: fixed;
+        }
+         
+        #barre4 {
+        padding: 12px;
+        float: left;
+        padding-left: 50%;
+        margin-left: 120px;
+        min-width:125px;
+        position: fixed;
+        }
+        #barre5 {
+           
+            float: left;
+            padding-left: 50%;
+            margin-top: 200px;
+            margin-left: 120px;
+            min-width:125px;
+            position: fixed;
+            }

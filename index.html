@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Todo liste avec VueJS</title>
+
+    <script src="lib/vue.min.js"></script>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+     
+
+
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 50%;
+  
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 60%;
+  border: 1px solid #ddd;
+  
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+    table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+    </style>
+ 
+        
+</head>
+
+<body>
+    <div id="app">
+        <br>
+                    <div id="barre1">
+                                <select v-model="pageSize" @change="onchangee()">
+                                        <option disabled value="">Choisissez</option>
+                                        <option>5</option>
+                                        <option>10</option>
+                                        <option>15</option>
+                                    
+                                    </select>
+                                    <span> Sélectionné : {{ pageSize }}</span>
+                                </div>
+                             <div id="barre2"> <button class="btn btn-info" v-on:click="add">Add</button> </div>
+                             <!--div id="barre3"> <button class="btn btn-info" v-on:click="add2">Update</button> </div-->
+                            <input type="text" class="glyphicon glyphicon-search" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                        
+                        
+                               
+    </br></br></br>
+       <div v-if=etatAdd>
+           
+                             </div>
+              <div v-else id="barre4">
+                    <div id="reponsePOST" class="response"> </div>
+                    <form id="formulaireInsertionform"  v-on:submit="postRequest">
+                    
+                                <div class="form-group">
+                          <label for="email">Nom:</label>
+                          <input type="text" class="form-control" v-model="newRestaurant.nom" id="email">
+                        </div>
+                        <div class="form-group">
+                          <label for="pwd">Cuisine:</label>
+                          <input type="text" class="form-control" v-model="newRestaurant.cuisine" id="pwd">
+                        </div>
+                        <button  class="btn btn-info">Add</button>
+                        <button  class="btn btn-danger" v-on:click="Annuler">Cancel</button>
+                      </form>
+              </div>
+              <div v-if=etatAdd2>
+                </div>
+ <div v-else id="barre5">
+       <div id="reponsePUT" class="response"> </div>
+       <form id="formulaireModificationform"  v-on:submit="putRequest">
+       
+                   <div class="form-group">
+             <label for="email">Nom:</label>
+             <input type="text" class="form-control" v-model="newRestaurant.nom" id="email">
+           </div>
+           <div class="form-group">
+             <label for="pwd">Cuisine:</label>
+             <input type="text" class="form-control" v-model="newRestaurant.cuisine" id="pwd">
+           </div>
+           <button  class="btn btn-info">Update</button>
+           <button  class="btn btn-danger" v-on:click="Annuler2">Cancel</button>
+                </form>
+ </div>
+              <div id="barre3">
+                    <div>
+                    <table id="myTable">
+                        <tr class="header">
+                        <th style="width:30%;">Name</th>
+                        <th style="width:30%;">Cuisine</th>
+                        <th style="width:15%;">Update</th>
+                        <th style="width:15%;">Remove</th>
+                       </tr>
+                       <tr  v-for="(todo, index) in todos"  v-bind:style="{color:getColor(index)}">
+                          <td>
+                        {{todo.name}}
+                    </td>
+                        </ul>
+                        <td class="active"> {{todo.cuisine}}</td>
+                        <td ><li class="glyphicon glyphicon-pencil" v-on:click="add2(todo._id)"></li></td>
+                        <td ><li class="glyphicon glyphicon-trash"   v-on:click="deleteRequest(todo._id)"></li></td>
+                    </tr>
+                    </table>
+                    <button class="btn btn-info" v-on:click="Precedent">Previous</button>
+                    <button  class="btn btn-info" v-on:click="Suivant">Next</button>
+                   
+                </div>
+
+
+    </div>
+       
+
+    <script>
+            function myFunction() {
+              var input, filter, table, tr, td, i;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }       
+              }
+            }
+            </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
